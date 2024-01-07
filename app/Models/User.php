@@ -52,7 +52,7 @@ class User extends Authenticatable
     }
     public function deliveries():HasMany
     {
-        return $this->hasMany("deliveries","delivery_id","id");
+        return $this->hasMany(\App\Models\Delivery::class,"driver_id","id");
     }
 
 }

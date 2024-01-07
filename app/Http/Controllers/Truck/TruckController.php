@@ -9,6 +9,11 @@ use Illuminate\Http\Request;
 
 class TruckController extends Controller
 {
+    public function index($status)
+    {
+
+    }
+
     public function store(TruckRequest $request)
     {
         $truck = Truck::query()->create([

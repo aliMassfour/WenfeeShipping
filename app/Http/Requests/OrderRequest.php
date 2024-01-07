@@ -27,7 +27,8 @@ class OrderRequest extends FormRequest
             'products.*.price' => ['required' ,'numeric','min:0'] ,
             'products.*.code' => ['required' , 'string',],
             'products.*.amount' => ['required','numeric','min:1'],
-            'destination' => ['required','string'] ,
+            'city' => ['required','string'] ,
+            'state' => ['required',"string"] ,
             'buyerName' => ['required'] ,
             'buyerPhone' => ['required']
 

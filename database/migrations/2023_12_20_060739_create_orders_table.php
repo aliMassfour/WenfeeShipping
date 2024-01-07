@@ -15,6 +15,9 @@ return new class extends Migration
             $table->id();
             $table->json("products");
             $table->string("destination");
+            $table->string("city");
+            $table->string("state");
+//            $table->string("country");
             $table->string("lat");
             $table->string("lng");
             $table->string("buyer_name");

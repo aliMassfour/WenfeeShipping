@@ -8,6 +8,15 @@
 
             </div>
         </div>
+        <form action="">
+            <div class="mb-3 mt-3" >
+                <select name="" id="" class="form-select">
+                    @foreach($drivers as $driver)
+                        <option value="{{$driver->id}}">{{$driver->name}}</option>
+                    @endforeach
+                </select>
+            </div>
+        </form>
     </main>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
@@ -19,17 +28,17 @@
 
         async function initMap(endLat, endLng) {
             const { Map } = await google.maps.importLibrary("maps");
-
+            console.log(endLat);
             var map = new google.maps.Map(document.getElementById('map'), {
-                center: {lat:33.5226906,lng:35.8073717},
-                zoom: 4
+                center: {lat:endLat,lng:endLng},
+                zoom: 13
             });
 
             var directionsService = new google.maps.DirectionsService();
             var directionsRenderer = new google.maps.DirectionsRenderer();
             directionsRenderer.setMap(map);
 
-            var start = new google.maps.LatLng(33.5226906, 35.8073717);
+            var start = new google.maps.LatLng(29.7604,-95.3698 );
             var end = new google.maps.LatLng(endLat, endLng);
 
             var request = {

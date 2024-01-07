@@ -12,18 +12,21 @@ class OrderController extends Controller
 {
     public function store(OrderRequest $request)
     {
+        $destination = $request->city . "," . $request->state . "," . "Usa";
 //        return json_encode($request->);
-        $latlng= Geocoding::getLatLng($request->destination);
+        $latlng = Geocoding::getLatLng($destination);
         $order = Order::query()->create([
-            'buyer_name' => $request->buyerName ,
-            'buyer_phone' => $request->buyerPhone ,
-            'destination' => $request->destination ,
-            'products' => json_encode($request->products) ,
-            'lat' => $latlng['lat'] ,
+            'buyer_name' => $request->buyerName,
+            'buyer_phone' => $request->buyerPhone,
+            'destination' => $destination,
+            'city' => $request->city,
+            'state' => $request->state,
+            'products' => json_encode($request->products),
+            'lat' => $latlng['lat'],
             'lng' => $latlng['lng']
-        ]) ;
+        ]);
         return response()->json([
-           'message' => 'order was created successfully'
+            'message' => 'order was created successfully'
         ]);
 
     }
