@@ -14,7 +14,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return redirect()->route("login");
+
+    dispatch(function ()
+    {
+        sleep(100);
+        logger()->info("jop done");
+
+    });
+        return redirect()->route("login");
 });
 Route::get('login', [\App\Http\Controllers\Auth\AuthController::class, 'loginView'])->name('login');
 Route::post('login', [\App\Http\Controllers\Auth\AuthController::class, 'login'])->name('login.store');
