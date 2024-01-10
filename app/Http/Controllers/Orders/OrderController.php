@@ -18,4 +18,5 @@ class OrderController extends Controller
 //        return $orders;
         return view('orders.index')->with("orders",$orders);
     }
+
 }

@@ -15,12 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
 
-    dispatch(function ()
-    {
-        sleep(100);
-        logger()->info("jop done");
 
-    });
         return redirect()->route("login");
 });
 Route::get('login', [\App\Http\Controllers\Auth\AuthController::class, 'loginView'])->name('login');
@@ -42,4 +37,8 @@ Route::middleware([])->group(function (){
 //deliveries group
 Route::middleware([])->group(function(){
     Route::get("delivery/create/{order}" ,[\App\Http\Controllers\Delivery\DeliveryController::class,"create"])->name("delivery.create");
+});
+
+Route::get("test",function(){
+
 });

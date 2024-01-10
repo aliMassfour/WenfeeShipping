@@ -17,9 +17,9 @@ class DatabaseSeeder extends Seeder
 //        $this->call(TruckSeeder::class);
 //        $this->call(RoleSeeder::class);
 //        DB::table('users')->insert(['role_id'=>1,'email'=>'admin@gmail.com','password'=>Hash::make('admin'),'name'=>'admin']);
-        // \App\Models\User::factory(10)->create();
-//        $this->call(OrderSeeder::class);
-
-         \App\Models\User::factory(10)->create();
+//         \App\Models\User::factory(10)->create();
+        $this->call(OrderSeeder::class);
+//
+//         \App\Models\User::factory(10)->create();
     }
 }

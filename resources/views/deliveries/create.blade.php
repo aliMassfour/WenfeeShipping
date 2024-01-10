@@ -5,7 +5,6 @@
         <div class="container-fluid">
             <div class="row min-vh-80">
                 <div id="map" class="small"></div>
-
             </div>
         </div>
         <form action="">
@@ -20,17 +19,20 @@
     </main>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            initMap(
-                {{$order->lat}},
-                {{$order->lng}}
-            );
+            initMap();
         });
 
-        async function initMap(endLat, endLng) {
+        async function initMap() {
             const { Map } = await google.maps.importLibrary("maps");
-            console.log(endLat);
+
+            // Replace the following with your actual array of waypoints
+            const waypoints = [
+                {lat: 29.7604, lng: -95.3698}, // Example: Houston, TX
+                // Add other waypoints as needed
+            ];
+
             var map = new google.maps.Map(document.getElementById('map'), {
-                center: {lat:endLat,lng:endLng},
+                center: waypoints[0],
                 zoom: 13
             });
 
@@ -38,12 +40,21 @@
             var directionsRenderer = new google.maps.DirectionsRenderer();
             directionsRenderer.setMap(map);
 
-            var start = new google.maps.LatLng(29.7604,-95.3698 );
-            var end = new google.maps.LatLng(endLat, endLng);
+            // Construct an array of LatLng objects from the waypoints
+            const waypointLatLngs = waypoints.map(waypoint => new google.maps.LatLng(waypoint.lat, waypoint.lng));
+
+            // Set the start and end points
+            var start = waypointLatLngs[0];
+            var end = waypointLatLngs[0];
+
+            // Create waypoints excluding the start and end points
+            var waypointsArray = waypointLatLngs.slice(1, -1).map(waypoint => ({ location: waypoint, stopover: true }));
 
             var request = {
                 origin: start,
                 destination: end,
+                waypoints: waypointsArray,
+                optimizeWaypoints: true, // Optimize the order of waypoints for the shortest route
                 travelMode: 'DRIVING'
             };
 
@@ -53,7 +64,5 @@
                 }
             });
         }
-
     </script>
-
 @endsection

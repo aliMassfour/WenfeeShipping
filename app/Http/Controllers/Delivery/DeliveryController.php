@@ -34,6 +34,7 @@ class DeliveryController extends Controller
 
             }
         }
+
 //        return $returned_drivers;
         return view("deliveries.create")->with(['order' => $order, 'drivers' => $returned_drivers]);
     }

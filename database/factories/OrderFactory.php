@@ -17,15 +17,17 @@ class OrderFactory extends Factory
      */
     public function definition(): array
     {
-        $destination = $this->faker->address . ',' . $this->faker->city();
+        $destination = $this->faker->address(). ',' . $this->faker->city();
 //        $latLng=Geocoding::getLatLng($destination);
         $products = $this->defineProducts();
         return [
             "buyer_name" => $this->faker->name(),
             "buyer_phone" => $this->faker->phoneNumber() ,
-            "destination" => $destination ,
-            "lng" => $this->faker->longitude() ,
-            "lat" => $this->faker->latitude(),
+            "city" => $this->faker->city() ,
+            "destination" => $destination,
+            "state" => $this->faker->state,
+            "lng" => $this->faker->longitude(-124.733056,-66.951381  ) ,
+            "lat" => $this->faker->latitude(24.396308,49.384358),
             'products' => $products
         ];
     }
