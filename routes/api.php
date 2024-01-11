@@ -19,6 +19,14 @@ use \PHPUnit\Framework\TestCase;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+//Authentication group
+Route::middleware([])->group(function () {
+    Route::post("login", [\App\Http\Controllers\Api\Auth\AuthController::class, "login"]);
+    Route::post("logout", [\App\Http\Controllers\Api\Auth\AuthController::class, "logout"]);
+});
+
+
+// orders group
 Route::middleware([])->group(function () {
     Route::post('order/store', [\App\Http\Controllers\Api\OrderController::class, 'store']);
 });
@@ -53,7 +61,7 @@ Route::get('test', function () {
 //    return $collection;
     $orders = \App\Models\Order::query()->whereDoesntHave('delivery')->get();
     $order = $orders->first();
-    $dbscan = new App\Clustering\DbscanAdapter\DbscanAdapter(1.0,5);
+    $dbscan = new App\Clustering\DbscanAdapter\DbscanAdapter(1.0, 5);
     $dbscan->setOrder($order);
 
     return $dbscan->cluster($orders->toArray());
