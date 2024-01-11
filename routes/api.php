@@ -23,6 +23,7 @@ Route::middleware([])->group(function () {
     Route::post('order/store', [\App\Http\Controllers\Api\OrderController::class, 'store']);
 });
 Route::get('test', function () {
+
 //    $api_key = env('GOOGLE_MAP_KEY');
 //    $client = new \GuzzleHttp\Client();
 //    $response = $client->get('https://maps.googleapis.com/maps/api/geocode/json', [
@@ -52,7 +53,7 @@ Route::get('test', function () {
 //    return $collection;
     $orders = \App\Models\Order::query()->whereDoesntHave('delivery')->get();
     $order = $orders->first();
-    $dbscan = new App\Clustring\DbscanAdapter\DbscanAdapter(1.0,5);
+    $dbscan = new App\Clustering\DbscanAdapter\DbscanAdapter(1.0,5);
     $dbscan->setOrder($order);
 
     return $dbscan->cluster($orders->toArray());

@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Clustring\DbscanAdapter;
+namespace App\Clustering\DbscanAdapter;
 
 use App\Models\Order;
 use \Phpml\Clustering\Clusterer;
@@ -9,7 +9,7 @@ use \Phpml\Clustering\Clusterer;
 
 /**
  * Class DbscanAdapter
- * @package App\Clustring\DbscanAdapter
+ * @package App\Clustering\DbscanAdapter
  */
 class DbscanAdapter implements Clusterer
 {

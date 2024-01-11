@@ -9,6 +9,7 @@
                         <div class="card" data-bs-toggle="modal" data-bs-target="#orderModal{{$order->id}}">
                             <div class="card-header border bg-gradient-dark"></div>
                             <div class="card-body">
+                                <h4 class="card-text">number: {{$order->id}}</h4>
                                 <h6 class="card-text">name: {{$order->buyer_name}}</h6>
                                 <h6 class="card-text">phone: {{$order->buyer_phone}}</h6>
                             </div>
