@@ -88,25 +88,37 @@ class DbscanAdapter implements Clusterer
 
     protected function convertOutput(): array
     {
-
-        $coordinates = [$this->order->lat, $this->order->lng];
-        $index = 0;
+        $index = null;
+        $a=[];
         foreach ($this->clusters as $group => $cluster) {
-            if ($cluster[0] == $coordinates[0] & $cluster[1] == $coordinates[1]) {
-                $index = $group;
-                break;
-            }
-        }
-        $clusterGroup = $this->clusters[$index];
-        $ordersGroup = [];
-        foreach ($clusterGroup as $cluster) {
-
-            foreach ($this->samples as $sample) {
-                if ($sample["lat"] == $cluster[0] and $sample["lng"] == $cluster[1]) {
-                    $ordersGroup[] = $sample;
+            $a[]=$group;
+            foreach ($cluster as $cooridinates) {
+                if ($cooridinates[0] === $this->order->lat && $cooridinates[1] === $this->order->lng) {
+                    $index = $group;
+                    break;
                 }
             }
         }
-        return $ordersGroup;
+//        return $this->clusters;
+//        return [$index];
+
+        if ($index !== null) {
+            $clusterGroup = $this->clusters[$index];
+            $ordersGroup = [];
+            foreach ($clusterGroup as $cluster) {
+                foreach ($this->samples as $sample) {
+                    if ($sample["lat"] == $cluster[0] and $sample["lng"] == $cluster[1]) {
+                        $ordersGroup[] = $sample;
+                    }
+                }
+            }
+
+            return $ordersGroup;
+        } else {
+            $clusterGroup = [$this->order];
+            return $clusterGroup;
+        }
+//        return [[$this->order->lat, $this->order->lng], $clusterGroup];
+
     }
 }

@@ -2,47 +2,45 @@
 
 namespace App\Http\Controllers\Delivery;
 
+use App\Clustering\DbscanAdapter\DbscanAdapter;
 use App\Http\Controllers\Controller;
+use App\Models\Order;
+use App\Models\Truck;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 
 class DeliveryController extends Controller
+
 {
     public function create(\App\Models\Order $order)
     {
-        $drivers = User::query()->where("role_id", '2')->with('deliveries')->get();
-        $returned_drivers=new Collection();
-        foreach ($drivers as $driver)
-        {
-            $t=true;
-            if(empty($driver->deliveries ))
-            {
-                $returned_drivers->add($driver);
-                continue;
-            }
-            foreach ($driver->deliveries as $delivery)
-            {
-                if($delivery->status== "pending"){
-                    $t=false;
-                    break;
-                }
-            }
-            if($t==true)
-            {
-                $returned_drivers->add($driver);
+//        fetch all available drivers
+        $drivers = User::query()
+            ->where("role_id", "=", "2")
+            ->wheredoesntHave("deliveries", function ($query) {
+                $query->where("status", "=", "pending");
+            })
+            ->get();
 
-            }
-        }
+//      fetch all available trucks
+        $truks = Truck::query()->wheredoesntHave("deliveries", function ($query) {
+            $query->where("status", "=", "pending");
+        })
+            ->get();
+//      fetch clustering orders
+        $dbscan = new DbscanAdapter(0.5, 5);
+        $orders = Order::query()->whereDoesntHave("delivery")->get();
+        $dbscan->setOrder($order);
+        $orderGroup = $dbscan->cluster($orders->toArray());
 
-//        return $returned_drivers;
-        return view("deliveries.create")->with(['order' => $order, 'drivers' => $returned_drivers]);
+        return view("deliveries.create")
+            ->with(['order' => $order, 'drivers' => $drivers, "trucks" => $truks, "orders" => $orderGroup]);
     }
 
-    public function store(\App\Models\Order $order)
+    public function store(Request $request,\App\Models\Order $order)
     {
-        $order->delivery()->create([
+        dd($request->all());
 
-        ]);
     }
 }

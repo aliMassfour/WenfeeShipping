@@ -60,8 +60,8 @@ Route::get('test', function () {
 //    return $clustringCollection;
 //    return $collection;
     $orders = \App\Models\Order::query()->whereDoesntHave('delivery')->get();
-    $order = $orders->first();
-    $dbscan = new App\Clustering\DbscanAdapter\DbscanAdapter(1.0, 5);
+    $order = \App\Models\Order::query()->where("id","812")->first();
+    $dbscan = new App\Clustering\DbscanAdapter\DbscanAdapter(0.7, 5);
     $dbscan->setOrder($order);
 
     return $dbscan->cluster($orders->toArray());

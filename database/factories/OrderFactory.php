@@ -17,20 +17,21 @@ class OrderFactory extends Factory
      */
     public function definition(): array
     {
-        $destination = $this->faker->address(). ',' . $this->faker->city();
+        $destination = $this->faker->address() . ',' . $this->faker->city();
 //        $latLng=Geocoding::getLatLng($destination);
         $products = $this->defineProducts();
         return [
             "buyer_name" => $this->faker->name(),
-            "buyer_phone" => $this->faker->phoneNumber() ,
-            "city" => $this->faker->city() ,
+            "buyer_phone" => $this->faker->phoneNumber(),
+            "city" => $this->faker->city(),
             "destination" => $destination,
             "state" => $this->faker->state,
-            "lng" => $this->faker->longitude(-124.733056,-66.951381  ) ,
-            "lat" => $this->faker->latitude(24.396308,49.384358),
+            "lng" => $this->faker->longitude(-124.733056, -66.951381),
+            "lat" => $this->faker->latitude(40.396308, 47.384358),
             'products' => $products
         ];
     }
+
     private function defineProducts()
     {
         $products = [];
@@ -45,7 +46,7 @@ class OrderFactory extends Factory
             ];
         }
 
-        return json_encode($products) ;
+        return json_encode($products);
 
     }
 }

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Testing\Fluent\Concerns\Has;
 
@@ -17,9 +18,10 @@ class Order extends Model
     /**
      * @return HasOne
     **/
-    public function delivery():HasOne
+    public function delivery():BelongsTo
     {
-        return $this->hasOne(\App\Models\Delivery::class,"order_id","id");
+        return $this->belongsTo(\App\Models\Delivery::class,"delivery_id","id");
+
     }
 
 }
