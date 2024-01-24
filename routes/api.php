@@ -29,7 +29,10 @@ Route::middleware([])->group(function () {
 // orders group
 Route::middleware([])->group(function () {
     Route::post('order/store', [\App\Http\Controllers\Api\OrderController::class, 'store']);
+    Route::patch("orders/scan/{order}", [\App\Http\Controllers\Api\OrderController::class, 'scan']);
 });
+
+
 Route::get('test', function () {
 
 //    $api_key = env('GOOGLE_MAP_KEY');
@@ -60,7 +63,7 @@ Route::get('test', function () {
 //    return $clustringCollection;
 //    return $collection;
     $orders = \App\Models\Order::query()->whereDoesntHave('delivery')->get();
-    $order = \App\Models\Order::query()->where("id","812")->first();
+    $order = \App\Models\Order::query()->where("id", "812")->first();
     $dbscan = new App\Clustering\DbscanAdapter\DbscanAdapter(0.7, 5);
     $dbscan->setOrder($order);
 

@@ -15,7 +15,8 @@ class Delivery extends Model
     protected $fillable = [
         "driver_id",
         "truck_id",
-        "order_id"
+        "order_id",
+        "status"
     ];
 
     public function orders(): HasMany

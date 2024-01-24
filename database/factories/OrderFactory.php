@@ -42,7 +42,8 @@ class OrderFactory extends Factory
                 'name' => $this->faker->word,
                 'amount' => $this->faker->randomNumber(2),
                 'price' => $this->faker->randomFloat(2, 5, 100),
-                'code' => $this->faker->randomNumber(),
+                'code' => $this->faker->randomLetter(),
+                "status" => "nonChecked"
             ];
         }
 

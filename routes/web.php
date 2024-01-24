@@ -14,10 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-
-
     return redirect()->route("login");
 });
+Route::get('home', [\App\Http\Controllers\Home\HomeController::class, "home"])->name('home');
 Route::get('login', [\App\Http\Controllers\Auth\AuthController::class, 'loginView'])->name('login');
 Route::post('login', [\App\Http\Controllers\Auth\AuthController::class, 'login'])->name('login.store');
 Route::post('logout', [\App\Http\Controllers\Auth\AuthController::class, 'logout'])->name('logout');
@@ -39,6 +38,13 @@ Route::middleware([])->group(function () {
     Route::post("delivery/store/{order}", [\App\Http\Controllers\Delivery\DeliveryController::class, "store"])->name("delivery.store");
 });
 
-Route::get("test", function () {
+Route::middleware([])->group(function () {
+    Route::get("trucks", [\App\Http\Controllers\TruckController::class, "index"])->name("trucks.index");
+    Route::get("trucks/{truck}", [\App\Http\Controllers\TruckController::class, "show"])->name("truck.show");
+
+});
+Route::get("test", function (\Illuminate\Http\Request $request) {
+    $variable= "this is my map";
+    return redirect()->route('home')->with('message',"hello wrold");
 
 });

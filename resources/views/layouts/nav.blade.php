@@ -33,6 +33,29 @@
                     <span class="nav-link-text ms-1 mr-3">orders</span>
                 </a>
             </li>
+            <li class="nav-item mt-3">
+                <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">trucks</h6>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link text-white bg-gradient-" href="{{route("trucks.index")}}">
+                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="material-icons opacity-10">directions_car</i>
+                    </div>
+                    <span class="nav-link-text ms-1 mr-3">trucks</span>
+                </a>
+            </li>
+            <li class="nav-item mt-3">
+                <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Drivers</h6>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white bg-gradient-" href="{{route("trucks.index")}}">
+                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="material-icons opacity-10">people</i>
+                    </div>
+                    <span class="nav-link-text ms-1 mr-3">drivers</span>
+                </a>
+            </li>
 
             {{--            <li class="nav-item">--}}
             {{--                <a class="nav-link text-white " href="">--}}
@@ -93,6 +116,10 @@
             {{--                    <span class="nav-link-text ms-1">Sign In</span>--}}
             {{--                </a>--}}
             {{--            </li>--}}
+            <li class="nav-item mt-3">
+                <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">profile</h6>
+            </li>
+
             <li class="nav-item">
                 <a class="nav-link text-white" href="{{ route('logout') }}"
                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
