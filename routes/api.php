@@ -31,7 +31,9 @@ Route::middleware([])->group(function () {
     Route::post('order/store', [\App\Http\Controllers\Api\OrderController::class, 'store']);
     Route::patch("orders/scan/{order}", [\App\Http\Controllers\Api\OrderController::class, 'scan']);
 });
-
+Route::middleware([])->group(function(){
+    Route::get('delivery/{delivery}',[\App\Http\Controllers\Api\DeliveryController::class,"show"]);
+});
 
 Route::get('test', function () {
 

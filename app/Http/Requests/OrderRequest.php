@@ -30,7 +30,8 @@ class OrderRequest extends FormRequest
             'city' => ['required','string'] ,
             'state' => ['required',"string"] ,
             'buyerName' => ['required'] ,
-            'buyerPhone' => ['required']
+            'buyerPhone' => ['required'],
+            'number' => 'required|numeric'
 
         ];
     }

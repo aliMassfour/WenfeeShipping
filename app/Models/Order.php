@@ -13,6 +13,7 @@ class Order extends Model
     use HasFactory;
 
     protected $fillable = [
+        "number","city","state",
         "products", "destination", "lat", "lng", "buyer_name", "buyer_phone", "delivery_id"
     ];
     /**

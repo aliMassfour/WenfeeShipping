@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -13,9 +12,11 @@ return new class extends Migration
     {
         Schema::create('deliveries', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("driver_id")->nullable()->constrained("users","id")->onDelete("set null");
+            $table->foreignId("driver_id")->nullable()->constrained("users", "id")->onDelete("set null");
             $table->foreignId("truck_id")->nullable()->constrained("trucks")->onDelete("set null");
-            $table->enum("status",["pending","receipt"]);
+            $table->enum("status", ["pending", "receipt"]);
+            $table->string("truck_dashboard")->nullable();
+            $table->string("delivered_products")->nullable();
             $table->timestamps();
         });
     }

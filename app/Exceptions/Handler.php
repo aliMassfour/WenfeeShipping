@@ -24,20 +24,21 @@ class Handler extends ExceptionHandler
      */
     public function register(): void
     {
-
-
+        $this->reportable(function (Throwable $e) {
+            //
+        });
 
 
     }
 
-    public function render($request, Throwable $e)
-    {
-        if ($request->is("api/*")) {
-            return response()->json(["message" => $e->getMessage()], $e->getCode());
-        } elseif ($request instanceof Request && $request->expectsJson()) {
-            return response()->json(["message" => $e->getMessage()], $e->getCode());
-        } else {
-            return parent::render($request, $e);
-        }
-    }
+//    public function render($request, Throwable $e)
+//    {
+//        if ($request->is("api/*")) {
+//            return response()->json(["message" => $e->getMessage()], $e->getCode());
+//        } elseif ($request instanceof Request && $request->expectsJson()) {
+//            return response()->json(["message" => $e->getMessage()], $e->getCode());
+//        } else {
+//            return parent::render($request, $e);
+//        }
+//    }
 }
