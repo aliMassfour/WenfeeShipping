@@ -31,43 +31,10 @@ Route::middleware([])->group(function () {
     Route::post('order/store', [\App\Http\Controllers\Api\OrderController::class, 'store']);
     Route::patch("orders/scan/{order}", [\App\Http\Controllers\Api\OrderController::class, 'scan']);
 });
-Route::middleware([])->group(function(){
-    Route::get('delivery/{delivery}',[\App\Http\Controllers\Api\DeliveryController::class,"show"]);
+Route::middleware([])->group(function () {
+    Route::get('delivery/{delivery}', [\App\Http\Controllers\Api\DeliveryController::class, "show"]);
 });
 
-Route::get('test', function () {
-
-//    $api_key = env('GOOGLE_MAP_KEY');
-//    $client = new \GuzzleHttp\Client();
-//    $response = $client->get('https://maps.googleapis.com/maps/api/geocode/json', [
-//        'query' => [
-//            'address' => 'ss',
-//            'key' => $api_key
-//        ]
-//    ]);
-//    if(empty(json_decode($response->getBody())->results))
-//    {
-//        return "dddd";
-//    }
-
-//    $orders=  \App\Models\Order::query()->whereDoesntHave("delivery")->get();
-//    $order = $orders->first();
-//    $dbscan = new \Phpml\Clustering\DBSCAN($epsilon = 1, $minSamples = 5);
-//    $samples = array();
-//    foreach ($orders as $order)
-//    {
-//        $samples[]=[$order->lat , $order->lng];
-//
-//    }
-
-
-//    $clustringCollection = collect(  $dbscan->cluster($samples));
-//    return $clustringCollection;
-//    return $collection;
-    $orders = \App\Models\Order::query()->whereDoesntHave('delivery')->get();
-    $order = \App\Models\Order::query()->where("id", "812")->first();
-    $dbscan = new App\Clustering\DbscanAdapter\DbscanAdapter(0.7, 5);
-    $dbscan->setOrder($order);
-
-    return $dbscan->cluster($orders->toArray());
+Route::post('test', function (Request $request) {
+    return \App\Facades\StoreFile::store($request->file("file"), 1);
 });

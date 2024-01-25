@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Services\GeocodingService;
+use App\Services\StoreFileService;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -25,6 +26,9 @@ class AppServiceProvider extends ServiceProvider
             return new GeocodingService();
         });
 
+        $this->app->singleton('StoreFileService', function ($app) {
+            return new StoreFileService();
+        });
 
     }
 }
