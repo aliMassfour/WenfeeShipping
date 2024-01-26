@@ -14,11 +14,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $this->call(TruckSeeder::class);
-        $this->call(RoleSeeder::class);
-        DB::table('users')->insert(['role_id'=>1,'email'=>'admin@gmail.com','password'=>Hash::make('admin'),'name'=>'admin']);
+//        $this->call(TruckSeeder::class);
+//        $this->call(RoleSeeder::class);
+        DB::table('users')->insert(['role_id'=>2,'email'=>'adminn@gmail.com','password'=>Hash::make('admin'),'name'=>'admin']);
          \App\Models\User::factory(10)->create();
-        $this->call(OrderSeeder::class);
+//        $this->call(OrderSeeder::class);
 //
     }
 }

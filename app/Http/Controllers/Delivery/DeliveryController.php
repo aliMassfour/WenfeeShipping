@@ -15,6 +15,11 @@ use Illuminate\Support\Facades\DB;
 class DeliveryController extends Controller
 
 {
+    public function __construct()
+    {
+        $this->middleware(["auth", "admin"]);
+    }
+
     public function create(\App\Models\Order $order)
     {
 //        fetch all available drivers

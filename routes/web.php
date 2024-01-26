@@ -39,8 +39,8 @@ Route::middleware([])->group(function () {
 });
 
 Route::middleware([])->group(function () {
-    Route::get("trucks", [\App\Http\Controllers\TruckController::class, "index"])->name("trucks.index");
-    Route::get("trucks/{truck}", [\App\Http\Controllers\TruckController::class, "show"])->name("truck.show");
+    Route::get("trucks", [\App\Http\Controllers\Truck\TruckController::class, "index"])->name("trucks.index");
+    Route::get("trucks/{truck}", [\App\Http\Controllers\Truck\TruckController::class, "show"])->name("truck.show");
 
 });
 Route::get("test", function (\Illuminate\Http\Request $request) {

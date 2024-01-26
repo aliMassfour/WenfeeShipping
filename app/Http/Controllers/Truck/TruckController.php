@@ -10,23 +10,24 @@ use Illuminate\Http\Request;
 
 class TruckController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(["auth", "admin"]);
+    }
+
     public function index()
     {
-        $truks = Truck::query()->paginate(5);
-        $truks->each(function (Truck &$truck) {
+        $trucks = Truck::query()->paginate(10);
+        $trucks->each(function (Truck $truck) {
+            $truck->setAttribute("status", "available");
             $deliveries = $truck->deliveries;
-            if (sizeof($deliveries) > 0) {
-                $deliveries->each(function (Delivery $delivery) use(&$truck) {
-                    if ($delivery->status == "pending")
-                    {
-                        $truck->setAttribute("status","busy");
-                    }else{
-                        $truck->setAttribute('status',"available");
-                    }
+            $deliveries->each(function (Delivery $delivery) use (&$truck) {
+                if ($delivery->status == "pending") {
+                    $truck->status = "busy";
+                }
             });
-            }
         });
-        return view("trucks.index")->with("trucks",$truks);
+        return view('trucks.index')->with('trucks', $trucks);
     }
 
     public function store(TruckRequest $request)
