@@ -17,7 +17,7 @@ class TruckController extends Controller
 
     public function index()
     {
-        $trucks = Truck::query()->paginate(10);
+        $trucks = Truck::query()->paginate(5);
         $trucks->each(function (Truck $truck) {
             $truck->setAttribute("status", "available");
             $deliveries = $truck->deliveries;
@@ -30,13 +30,21 @@ class TruckController extends Controller
         return view('trucks.index')->with('trucks', $trucks);
     }
 
+    public function create()
+    {
+        return view("trucks.create");
+    }
+
     public function store(TruckRequest $request)
     {
         $truck = Truck::query()->create([
             'serial_number' => $request->serial_number,
             'type' => $request->type
         ]);
-        return redirect()->back()->with("message", "truck created successfully");
+        return redirect()->back()->with([
+            "messageStatus" => 1,
+            "message" => "truck added to systen successfully"
+        ]);
     }
 
     public function update(TruckRequest $request, Truck $truck)

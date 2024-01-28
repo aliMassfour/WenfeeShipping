@@ -40,11 +40,13 @@ Route::middleware([])->group(function () {
 
 Route::middleware([])->group(function () {
     Route::get("trucks", [\App\Http\Controllers\Truck\TruckController::class, "index"])->name("trucks.index");
-    Route::get("trucks/{truck}", [\App\Http\Controllers\Truck\TruckController::class, "show"])->name("truck.show");
+    Route::get("trucks/{truck}", [\App\Http\Controllers\Truck\TruckController::class, "show"])->name("trucks.show");
+    Route::get("truck/create", [\App\Http\Controllers\Truck\TruckController::class, "create"])->name("trucks.create");
+    Route::post("truck/store", [\App\Http\Controllers\Truck\TruckController::class, "store"])->name("trucks.store");
 
 });
 Route::get("test", function (\Illuminate\Http\Request $request) {
-    $variable= "this is my map";
-    return redirect()->route('home')->with('message',"hello wrold");
+    $variable = "this is my map";
+    return redirect()->route('home')->with('message', "hello wrold");
 
 });

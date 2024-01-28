@@ -22,7 +22,7 @@ class TruckRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "serial_number" => ['required',"numeric"] ,
+            "serial_number" => ['required',"string"] ,
             "type" => ["required","string"]
         ];
     }
