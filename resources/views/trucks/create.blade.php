@@ -1,12 +1,8 @@
 @extends("layouts.app")
 @section("content")
     @include("layouts.nav")
-    <main class="main-content">
-        @if(session()->has('message'))
-            <div class="alert @if(session('messageStatus')) alert-success @else alert-danger  @endif">
-                {{session('message')}}
-            </div>
-        @endif
+
+
         <div class="container ">
             <h1 class="text-dark">add new truck to system</h1>
             <form action="{{route("trucks.store")}}" method="POSt">
@@ -38,7 +34,7 @@
                 <button type="submit" class="btn btn-primary">submit</button>
             </form>
         </div>
-    </main>
+
 
     <script>
         $(document).ready(function () {

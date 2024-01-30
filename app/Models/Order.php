@@ -13,15 +13,17 @@ class Order extends Model
     use HasFactory;
 
     protected $fillable = [
-        "number","city","state",
-        "products", "destination", "lat", "lng", "buyer_name", "buyer_phone", "delivery_id"
+        "number", "city", "state",
+        "products", "destination", "lat", "lng", "buyer_name", "buyer_phone", "delivery_id",
+        "status"
     ];
+
     /**
      * @return HasOne
-    **/
-    public function delivery():BelongsTo
+     **/
+    public function delivery(): BelongsTo
     {
-        return $this->belongsTo(\App\Models\Delivery::class,"delivery_id","id");
+        return $this->belongsTo(\App\Models\Delivery::class, "delivery_id", "id");
 
     }
 

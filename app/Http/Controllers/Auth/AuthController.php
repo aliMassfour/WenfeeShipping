@@ -25,7 +25,11 @@ class AuthController extends Controller
     {
 //        dd($request->only(['email','password']));
         if (!Auth::attempt($request->only(['email', 'password']))) {
-            throw LoginException::invalidCredentials();
+//            throw LoginException::invalidCredentials();
+            return redirect()->back()->with([
+               "messageStatus" => 0 ,
+                "message" => "invalid credentials"
+            ]);
         }
         $request->session()->regenerate();
         $user = User::query()->where(['email'=>$request->email])->first();

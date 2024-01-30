@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section("content")
     @include("layouts.nav")
-    <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg bg-body">
+
         <div class="container-fluid py-4 ">
             <div class="row min-vh-80">
                 @foreach($orders as $order)
@@ -57,5 +57,5 @@
                 @endforeach
             </div>
         </div>
-    </main>
+
 @endsection

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section("content")
     @include("layouts.nav")
-    <main class="main-content ">
+
         <div class="container mt-3">
             <h2>Trucks</h2>
             <div class="row">
@@ -38,7 +38,7 @@
             <!-- Custom Pagination Links -->
 
         </div>
-    </main>
+
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">

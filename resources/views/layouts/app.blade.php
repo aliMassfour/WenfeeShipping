@@ -30,7 +30,15 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body CLASS=" g-sidenav-show bg-gray-200">
-@yield("content")
+@include("layouts.nav")
+<main class="main-content">
+    @if(session()->has('message'))
+        <div class="alert @if(session('messageStatus')) alert-success @else alert-danger  @endif">
+            {{session('message')}}
+        </div>
+    @endif
+    @yield("content")
+</main>
 <script src="{{asset('assets/js/core/popper.min.js')}}"></script>
 <script src="{{asset('assets/js/core/bootstrap.min.js')}}"></script>
 <script src="{{asset('assets/js/plugins/perfect-scrollbar.min.js')}}"></script>

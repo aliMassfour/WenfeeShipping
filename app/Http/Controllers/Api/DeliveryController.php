@@ -21,6 +21,13 @@ class DeliveryController extends Controller
             'orders' => $orders
         ]);
     }
+    public function storeDeliveryFiles(Request $request)
+    {
+        $this->validate($request,[
+            "files" => ["array","required"],
+            "files.*" =>['required']
+        ]);
+    }
 
 
 }

@@ -27,7 +27,7 @@ Route::middleware([])->group(function () {
 
 
 // orders group
-Route::middleware([])->group(function () {
+Route::middleware(["auth:sanctum"])->group(function () {
     Route::post('order/store', [\App\Http\Controllers\Api\OrderController::class, 'store']);
     Route::patch("orders/scan/{order}", [\App\Http\Controllers\Api\OrderController::class, 'scan']);
 });

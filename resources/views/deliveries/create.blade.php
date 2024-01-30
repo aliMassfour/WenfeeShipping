@@ -2,12 +2,7 @@
 @section("content")
     @include("layouts.nav")
 
-    <main class=" main-content position-relative  border-radius-lg bg-gray">
-        @if(session()->has('message'))
-            <div class="alert @if(session('messageStatus')) alert-success @else alert-danger  @endif">
-                {{session('message')}}
-            </div>
-        @endif
+
         <form action="{{route("delivery.store",$order)}}" id="deliveryForm" method="POST">
             @csrf
             <div class="container-fluid py-4">
@@ -115,7 +110,7 @@
                 </div>
             </div>
         </div>
-    </main>
+
     <script>
 
         let coordinates = [];
