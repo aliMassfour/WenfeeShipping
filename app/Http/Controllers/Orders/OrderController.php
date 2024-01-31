@@ -10,13 +10,24 @@ class OrderController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['auth',"admin"]);
+        $this->middleware(['auth', "admin"]);
     }
-    public function index()
+
+    public function index($status)
     {
-        $orders = Order::query()->whereDoesntHave('delivery')->get();
+//        return $status;
+        $query = Order::query();
+        if ($status == "not_delivered") {
+            $orders = $query->whereDoesntHave('delivery')->get();
+        } elseif ($status == "delivered") {
+            $orders = $query->where("status", "=", "delivered")->get();
+        } else {
+            $orders = $query->where("status", "=", "pending_delivery")->get();
+        }
+
+
 //        return $orders;
-        return view('orders.index')->with("orders",$orders);
+        return view('orders.index')->with("orders", $orders);
     }
 
 }

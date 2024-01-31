@@ -1,9 +1,11 @@
 @extends('layouts.app')
 @section("content")
-    @include("layouts.nav")
 
-        <div class="container-fluid py-4 ">
-            <div class="row min-vh-80">
+
+    <div class="container-fluid py-4 ">
+        <div class="row min-vh-80">
+
+            @if(sizeof($orders)>0)
                 @foreach($orders as $order)
                     <div class="col-lg-4 mb-lg-2">
                         <div class="card" data-bs-toggle="modal" data-bs-target="#orderModal{{$order->id}}">
@@ -36,7 +38,8 @@
                                         @foreach(json_decode($order->products) as $product)
                                             <li class="list-group-item d-flex justify-content-between align-items-center">
                                                 {{$product->name}}
-                                                <span class="badge bg-gradient-dark rounded-pill">{{$product->amount}}</span>
+                                                <span
+                                                    class="badge bg-gradient-dark rounded-pill">{{$product->amount}}</span>
                                                 <span class="badge bg-gradient-dark rounded-pill">{{$product->amount * $product->price}}$</span>
                                             </li>
                                         @endforeach
@@ -46,8 +49,12 @@
 
                                 </div>
                                 <div class="modal-footer">
-                                    <a href="{{route('delivery.create',$order->id)}}" class="btn bg-gradient-dark"> make delivery</a>
-                                    <button type="button" class="btn bg-gradient-dark" data-bs-dismiss="modal">Close</button>
+                                    @if($order->status == "not_delivered")
+                                        <a href="{{route('delivery.create',$order->id)}}" class="btn bg-gradient-dark"> make
+                                            delivery</a>
+                                    @endif
+                                    <button type="button" class="btn bg-gradient-dark" data-bs-dismiss="modal">Close
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -55,7 +62,10 @@
                     <!-- End Modal -->
 
                 @endforeach
-            </div>
+            @else
+                <h1>there is no orders</h1>
+            @endif
         </div>
+    </div>
 
 @endsection

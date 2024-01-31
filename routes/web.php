@@ -27,7 +27,7 @@ Route::get('test', function () {
 });
 //orders group
 Route::middleware([])->group(function () {
-    Route::get("orders", [\App\Http\Controllers\Orders\OrderController::class, "index"])->name("orders.index");
+    Route::get("orders/{status}", [\App\Http\Controllers\Orders\OrderController::class, "index"])->name("orders.index");
 });
 //end orders group
 

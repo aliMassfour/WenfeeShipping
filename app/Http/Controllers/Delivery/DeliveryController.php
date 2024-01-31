@@ -64,6 +64,7 @@ class DeliveryController extends Controller
             foreach ($request->orders as $orderId) {
                 $order = Order::query()->where("id", '=', $orderId)->first();
                 $order->delivery_id = $delivery->id;
+                $order->status = "pending_delivery";
                 $order->save();
             }
             DB::commit();

@@ -32,9 +32,9 @@ class Handler extends ExceptionHandler
 
     public function render($request, Throwable $e)
     {
-        if ($e instanceof ValidationException) {
-            return response()->json(["errors" => $e->errors()], 422);
-        }
+//        if ($e instanceof ValidationException) {
+//            return response()->json(["errors" => $e->errors()], 422);
+//        }
 
         if ($request->is("api/*") || $request->expectsJson()) {
             return response()->json(["message" => $e->getMessage()], $e->getCode() ?: 500);

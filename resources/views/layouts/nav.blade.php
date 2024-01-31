@@ -26,11 +26,27 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link text-white bg-gradient-" href="{{route("orders.index")}}">
+                <a class="nav-link text-white bg-gradient-" href="{{route("orders.index","not_delivered")}}">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="material-icons opacity-10">money</i>
                     </div>
-                    <span class="nav-link-text ms-1 mr-3">orders</span>
+                    <span class="nav-link-text ms-1 mr-3">not deliverd orders</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white bg-gradient-" href="{{route("orders.index","pending_delivery")}}">
+                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="material-icons opacity-10">money</i>
+                    </div>
+                    <span class="nav-link-text ms-1 mr-3">pending orders</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white bg-gradient-" href="{{route("orders.index","delivered")}}">
+                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="material-icons opacity-10">money</i>
+                    </div>
+                    <span class="nav-link-text ms-1 mr-3">delivered orders</span>
                 </a>
             </li>
             <li class="nav-item mt-3">
@@ -50,7 +66,7 @@
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="material-icons opacity-10">add</i>
                     </div>
-                    <span class="nav-link-text ms-1 mr-3">create</span>
+                    <span class="nav-link-text ms-1 mr-3">add</span>
                 </a>
             </li>
             <li class="nav-item mt-3">

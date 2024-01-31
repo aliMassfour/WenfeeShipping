@@ -1,8 +1,5 @@
 @extends("layouts.app")
 @section("content")
-    @include("layouts.nav")
-
-
         <form action="{{route("delivery.store",$order)}}" id="deliveryForm" method="POST">
             @csrf
             <div class="container-fluid py-4">

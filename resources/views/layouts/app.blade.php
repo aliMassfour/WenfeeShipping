@@ -25,12 +25,15 @@
 {{--    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">--}}
 
 <!-- Bootstrap JS and Popper.js (order matters) -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqlbs9VSge1hsvmIYpm7VxjTEpcoVQQpI&libraries=places"></script>
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqlbs9VSge1hsvmIYpm7VxjTEpcoVQQpI&libraries=places"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body CLASS=" g-sidenav-show bg-gray-200">
-@include("layouts.nav")
+@if(auth()->check())
+    @include("layouts.nav")
+@endif
 <main class="main-content">
     @if(session()->has('message'))
         <div class="alert @if(session('messageStatus')) alert-success @else alert-danger  @endif">
