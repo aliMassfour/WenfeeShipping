@@ -17,11 +17,12 @@ return new class extends Migration {
             $table->string("destination");
             $table->string("city");
             $table->string("state");
-//            $table->string("country");
             $table->string("lat");
             $table->string("lng");
             $table->string("buyer_name");
             $table->string("buyer_phone");
+            $table->string('buyer_email');
+            $table->string("street");
             $table->enum("status", ["not_delivered", "delivered", "pending_delivery"])->default("not_delivered");
             $table->foreignId("delivery_id")->nullable()->constrained("deliveries", "id")->onDelete('cascade');
             $table->timestamps();

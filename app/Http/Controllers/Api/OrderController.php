@@ -28,18 +28,20 @@ class OrderController extends Controller
      *     @OA\RequestBody(
      *         required=true,
      *         @OA\JsonContent(
-     *             required={"products", "city", "state", "buyerName", "buyerPhone"},
+     *             required={"products", "city", "state", "buyerName", "buyerPhone","buyerEmail","street"},
      *             @OA\Property(property="products", type="array", @OA\Items(
      *                 @OA\Property(property="name", type="string"),
      *                 @OA\Property(property="price", type="number", format="float"),
      *                 @OA\Property(property="code", type="string"),
      *                 @OA\Property(property="amount", type="integer", format="int32"),
      *             )),
+     *             @OA\Property(property="street", type="string"),
      *             @OA\Property(property="city", type="string"),
      *             @OA\Property(property="state", type="string"),
      *             @OA\Property(property="buyerName", type="string"),
      *             @OA\Property(property="buyerPhone", type="string"),
-     *              @OA\Property(property="number", type="string"),
+     *             @OA\Property(property="number", type="int"),
+     *             @OA\Property(property="buyerEmail", type="string"),
      *         )
      *     ),
      *     @OA\Response(
@@ -69,13 +71,15 @@ class OrderController extends Controller
         $order = Order::query()->create([
             'buyer_name' => $request->buyerName,
             'buyer_phone' => $request->buyerPhone,
+            "buyer_email" => $request->buyerEmail,
             'destination' => $destination,
             'city' => $request->city,
             'state' => $request->state,
             'products' => json_encode($request->products),
             'lat' => $latlng['lat'],
             'lng' => $latlng['lng'],
-            "number" => $request->number
+            "number" => $request->number,
+            "street" => $request->street
         ]);
         return response()->json([
             'message' => 'order was created successfully',

@@ -15,7 +15,7 @@ class Order extends Model
     protected $fillable = [
         "number", "city", "state",
         "products", "destination", "lat", "lng", "buyer_name", "buyer_phone", "delivery_id",
-        "status"
+        "status","street","buyer_email"
     ];
 
     /**

@@ -29,7 +29,9 @@ class OrderFactory extends Factory
             "lng" => $this->faker->longitude(-124.733056, -66.951381),
             "lat" => $this->faker->latitude(40.396308, 47.384358),
             'products' => $products,
-            "number" => $this->faker->numberBetween()
+            "number" => $this->faker->numberBetween(),
+            "street" => $this->faker->streetAddress(),
+            "buyer_email" => $this->faker->email()
         ];
     }
 

@@ -136,7 +136,9 @@
                                     "city",
                                     "state",
                                     "buyerName",
-                                    "buyerPhone"
+                                    "buyerPhone",
+                                    "buyerEmail",
+                                    "street"
                                 ],
                                 "properties": {
                                     "products": {
@@ -161,6 +163,9 @@
                                             "type": "object"
                                         }
                                     },
+                                    "street": {
+                                        "type": "string"
+                                    },
                                     "city": {
                                         "type": "string"
                                     },
@@ -174,6 +179,9 @@
                                         "type": "string"
                                     },
                                     "number": {
+                                        "type": "integer"
+                                    },
+                                    "buyerEmail": {
                                         "type": "string"
                                     }
                                 },
@@ -201,6 +209,81 @@
                     },
                     "400": {
                         "description": "Bad request"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/orders/scan/{order}": {
+            "post": {
+                "tags": [
+                    "Order"
+                ],
+                "summary": "Scan a product in an order",
+                "description": "Scans a product in the specified order.",
+                "operationId": "scanOrder",
+                "parameters": [
+                    {
+                        "name": "order",
+                        "in": "path",
+                        "description": "ID of the order to scan the product in",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "code",
+                        "in": "query",
+                        "description": "Code of the product to scan",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "code"
+                                ],
+                                "properties": {
+                                    "code": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Product scanned successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Product scanned successfully"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Product not found in the order"
                     }
                 },
                 "security": [

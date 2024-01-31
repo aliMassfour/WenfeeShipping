@@ -22,15 +22,16 @@ class OrderRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'products' => ['required','array'],
-            'products.*.name' => ['required','string'],
-            'products.*.price' => ['required' ,'numeric','min:0'] ,
-            'products.*.code' => ['required' , 'string',],
-            'products.*.amount' => ['required','numeric','min:1'],
-            'city' => ['required','string'] ,
-            'state' => ['required',"string"] ,
-            'buyerName' => ['required'] ,
+            'products' => ['required', 'array'],
+            'products.*.name' => ['required', 'string'],
+            'products.*.price' => ['required', 'numeric', 'min:0'],
+            'products.*.code' => ['required', 'string',],
+            "street" => ['required', "string"],
+            'city' => ['required', 'string'],
+            'state' => ['required', "string"],
+            'buyerName' => ['required'],
             'buyerPhone' => ['required'],
+            "buyerEmail" => ['required', "email"],
             'number' => 'required|numeric'
 
         ];
