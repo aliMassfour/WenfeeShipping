@@ -36,7 +36,7 @@ class DeliveryController extends Controller
         })
             ->get();
 //      fetch clustering orders
-        $dbscan = new DbscanAdapter(0.5, 5);
+        $dbscan = new DbscanAdapter(0.6, 5);
         $orders = Order::query()->whereDoesntHave("delivery")->get();
         $dbscan->setOrder($order);
         $orderGroup = $dbscan->cluster($orders->toArray());

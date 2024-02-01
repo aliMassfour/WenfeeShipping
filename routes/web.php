@@ -46,7 +46,8 @@ Route::middleware([])->group(function () {
 
 });
 Route::get("test", function (\Illuminate\Http\Request $request) {
-    $variable = "this is my map";
-    return redirect()->route('home')->with('message', "hello wrold");
+\Illuminate\Support\Facades\Mail::raw("hello this is test email",function ($message){
+    $message->to("hghf00680@gmail.com")->subject("test");
+});
 
 });

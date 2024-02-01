@@ -9,6 +9,7 @@ use App\Http\Requests\OrderRequest;
 use App\Http\Requests\ScanRequest;
 use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
 {
@@ -81,6 +82,11 @@ class OrderController extends Controller
             "number" => $request->number,
             "street" => $request->street
         ]);
+        Mail::raw("thanks for using our company....your shipping request is under processing",
+            function ($message) use ($order) {
+                $message->to($order->buyer_email)
+                    ->subject("Wenfee team");
+            });
         return response()->json([
             'message' => 'order was created successfully',
             'order' => $order
