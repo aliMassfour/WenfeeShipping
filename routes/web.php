@@ -45,9 +45,15 @@ Route::middleware([])->group(function () {
     Route::post("truck/store", [\App\Http\Controllers\Truck\TruckController::class, "store"])->name("trucks.store");
 
 });
-Route::get("test", function (\Illuminate\Http\Request $request) {
-\Illuminate\Support\Facades\Mail::raw("hello this is test email",function ($message){
-    $message->to("hghf00680@gmail.com")->subject("test");
+//users routes
+Route::middleware([])->group(function () {
+    Route::get("users", [\App\Http\Controllers\User\UserController::class, "index"])->name('users.index');
+    Route::get('users/create', [\App\Http\Controllers\User\UserController::class, "create"])->name('users.create');
+    Route::post("users/store",[\App\Http\Controllers\User\UserController::class,"store"])->name("users.store");
 });
+Route::get("test", function (\Illuminate\Http\Request $request) {
+    \Illuminate\Support\Facades\Mail::raw("hello this is test email", function ($message) {
+        $message->to("hghf00680@gmail.com")->subject("test");
+    });
 
 });
